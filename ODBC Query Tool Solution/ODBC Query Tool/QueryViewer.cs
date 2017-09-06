@@ -27,18 +27,19 @@ namespace ODBC_Query_Tool
 				else {
 					query = richTextBox1.Text;
 				}
-
+				this.UseWaitCursor = true;
 				DataTable data = _connector.GetDataTableFromReader(query);
-				if (data != null && data.Rows != null && data.Rows.Count > 0) {
+				if (data != null && data.Rows != null) {
 					dataGridView1.DataSource = data;
 					dataGridView1.Refresh();
 				}
-
+				this.UseWaitCursor = false;
 			}
 			catch (Exception ex) {
-
+				this.UseWaitCursor = false;
 				MessageBox.Show(ex.ToString());
 			}
+			
 		}
 
 		private void QueryViewer_KeyDown(object sender, KeyEventArgs e) {
@@ -46,6 +47,5 @@ namespace ODBC_Query_Tool
 				button1_Click(null, null);
 			}
 		}
-
 	}
 }
