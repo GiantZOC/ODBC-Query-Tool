@@ -42,6 +42,7 @@ namespace ODBC_Query_Tool
 			dbConnection.Open();
 			OdbcCommand dbCommand = dbConnection.CreateCommand();
 			dbCommand.CommandText = queryString;
+			dbCommand.CommandTimeout = 30; //seconds
 			OdbcDataReader dbReader = dbCommand.ExecuteReader();
 			
 			dt.Load(dbReader);
