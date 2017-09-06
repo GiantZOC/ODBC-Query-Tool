@@ -20,7 +20,13 @@ namespace ODBC_Query_Tool
 
 		private void button1_Click(object sender, EventArgs e) {
 			try {
-				string query = richTextBox1.Text;
+				string query = "";
+				if (richTextBox1.SelectedText != "") {
+					query = richTextBox1.SelectedText;
+				}
+				else {
+					query = richTextBox1.Text;
+				}
 
 				DataTable data = _connector.GetDataTableFromReader(query);
 				if (data != null && data.Rows != null && data.Rows.Count > 0) {
@@ -40,5 +46,6 @@ namespace ODBC_Query_Tool
 				button1_Click(null, null);
 			}
 		}
+
 	}
 }
